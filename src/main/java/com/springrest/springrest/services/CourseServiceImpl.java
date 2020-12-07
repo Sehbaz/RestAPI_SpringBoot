@@ -49,5 +49,17 @@ public class CourseServiceImpl implements CourseService{
         list=this.list.stream().filter(e->e.getCourseID()!=parseLong).collect(Collectors.toList());
     }
 
+    @Override
+    public Course updateCourse(Course course) {
+
+        list.forEach(e->{
+            if(e.getCourseID()==course.getCourseID()){
+                e.setTitle(course.getTitle());
+                e.setDescription(course.getDescription());
+            }
+        });
+        return course;
+    }
+
 
 }

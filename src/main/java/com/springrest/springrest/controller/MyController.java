@@ -50,4 +50,10 @@ public class MyController {
        }
     }
 
+    //Updating the data using the id
+    @PutMapping("/courses/{courseID}")
+    public Course updateCourse(@RequestBody Course course){
+        return this.courseService.updateCourse(course);
+    }
+
 }
