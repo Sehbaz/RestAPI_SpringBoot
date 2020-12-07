@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class CourseServiceImpl implements CourseService{
 
@@ -12,8 +14,8 @@ public class CourseServiceImpl implements CourseService{
 
     public CourseServiceImpl(){
         list = new ArrayList<>();
-        list.add(new Course((long) 1,"Java course 1","this is first source"));
-        list.add(new Course((long) 2,"Java course 2","this is second source"));
+        list.add(new Course((long) 1112,"Java course 1","this is first source"));
+        list.add(new Course((long) 2222,"Java course 2","this is second source"));
     }
 
 
@@ -38,9 +40,14 @@ public class CourseServiceImpl implements CourseService{
 
     @Override
     public Course addCourse(Course course) {
-
         list.add(course);
         return course;
     }
+
+    @Override
+    public void deleteCourse(long parseLong) {
+        list=this.list.stream().filter(e->e.getCourseID()!=parseLong).collect(Collectors.toList());
+    }
+
 
 }
